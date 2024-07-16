@@ -17,7 +17,10 @@ class Task:
     def get_response(self):
         try:
             response = get(f"{self.base_url}/{self.get_url}", headers=self.headers)
-            return f"Get Response : {response.status_code}"
+            if response.status_code == 200:
+                return f"Get Response : {response.status_code}"
+            else:
+                return response.status_code
         except exceptions.RequestException as e:
             return e
         
